@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>圣杯布局</title>
+  <style>
+    #header #footer {
+      width: 100%;
+      height: 200px;
+    }
+    #container .column{
+      position: relative;
+      float: left;
+      
+    }
+    #footer{
+      clear: both;
+    }
+  </style>
+</head>
+<body>
+  <div id="header">header</div>
+  <div id="container">
+    <div id="center" class="column">中间自适应</div>
+    <div id="left" class="column">左列定宽</div>
+    <div id="right" class="column">右列定宽</div>
+  </div>
+  <div id="footer">footer</div>
+</body>
+</html>
