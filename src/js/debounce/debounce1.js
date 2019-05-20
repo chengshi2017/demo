@@ -6,7 +6,7 @@ function getUserAction(e) {
   container.innerHTML = count++;
 }
 
-container.onmousemove = debounce(getUserAction, 1000, true);
+container.onmousemove = debounce(getUserAction, 1000);
 
 /**
  * 在任务触发很频繁时，只有任务触发的间隔超过制定时间的间隔的时候，任务才会触发
@@ -14,33 +14,14 @@ container.onmousemove = debounce(getUserAction, 1000, true);
  * @type {number}
  */
 
-function debounce(func, wait, immediate) {
-  var timeout, result;
-  var debounced = function () {
+function debounce(func, wait) {
+  var timeout;
+  return function () {
     var context = this;
-    var args = arguments;
-    if (timeout) clearTimeout(timeout);
-    if (immediate) {
-      var callNow = !timeout;
-      timeout = setTimeout(() => {
-        timeout = null
-      },wait);
-      if (callNow) {
-        result = func.apply(context, args)
-      }
-    }
-    else {
-      timeout = setTimeout(() => {
-        func.apply(context, args)
-      }, wait)
-    }
-    return result;
-  };
-  
-  debounced.cancel = function () {
+    let args = arguments;
     clearTimeout(timeout);
-    timeout = null
-  };
-  
-  return debounced
+    timeout = setTimeout(() => {
+      func.call(context, args)
+    },wait)
+  }
 }

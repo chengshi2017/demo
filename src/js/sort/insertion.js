@@ -1,22 +1,22 @@
-// 插入算法
-function swap (array, left, right) {
-  let rightValue = array[right];
-  array[right] = array[left];
-  array[left] = rightValue;
-}
-
-function insertion (array) {
-  if (!Array.isArray(array)) {
-    return;
-  }
-  for (let i = 1; i < array.length; i++) {
-    for (let j = i-1; (j >= 0)&& array[j] > array[j+1]; j--) {
-      swap(array, j, j+1)
+/**
+ * 假设数组第一个元素已经排好序
+ * 从第二个元素开始，将已经排好序的元素放在数组的前面
+ * 依次遍历数组，然后将排好序元素的下一个元素取出来，和已经排好序的元素对比，最后插入到已排好序的元素中
+ * @param arr
+ * @returns {*}
+ */
+function insertionSort (arr) {
+  for (let i = 1,length = arr.length; i < length; i++) {
+    let currentValue = arr[i];
+    for (let j = i-1; j >= 0; j--) {
+      if (arr[j + 1] < arr[j]) {
+        arr[j + 1] = arr[j];
+        arr[j] = currentValue
+      }
     }
   }
-  console.log(array);
-  return array
+  return arr
 }
 
-const array = [5,6,4,2,1,5,6,8,2,7,9,8,10];
-insertion(array);
+let arr = [2,5,1,7,2,8,3,9];
+console.log(insertionSort(arr));
