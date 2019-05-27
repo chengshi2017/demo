@@ -5,19 +5,24 @@
  * 以此类推，直到数组中所有元素都已经排好序
  * @type {number[]}
  */
-var array = [10, 7, 3, 9, 11, 2, 5, 4];
 
-function bubbleSort(arr) {
+function bubbleSort1(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
     for (let j = 0; j < i; j++) {
       if (arr[j] > arr[j+1]) {
-        let temp = arr[j];
-        arr[j] = arr[j + 1];
-        arr[j + 1] = temp
+        swap(arr, j, j+1)
       }
     }
   }
-  return arr
+  return arr;
 }
 
-console.log(bubbleSort(array));
+function swap(arr, i, j) {
+  if (i === j) return;
+  let temp = arr[i];
+  arr[i] = arr[j];
+  arr[j] = temp
+}
+
+var arr = [3,2,1,5,3,7,1,8];
+console.log(bubbleSort1(arr));

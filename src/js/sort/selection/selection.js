@@ -7,25 +7,26 @@
  * @param arr
  * @returns {*}
  */
-function selectionSort(arr) {
-  for (let i = 0, length = arr.length; i< length; i++) {
-    let minIndex = i;
-    for (let j = i + 1, length = arr.length; j < length; j++) {
-      if (arr[minIndex] > arr[j]) {
-        minIndex = j;
+function selectionSort1(arr) {
+  for (let i = 0; i < arr.length - 1; i++) {
+    let min = i;
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[j] < arr[min]) {
+        min = j
       }
     }
-    swap(arr, minIndex, i)
+    swap(arr, i, min)
   }
   return arr
 }
 
-function swap(arr, minIndex, i) {
-  if (minIndex === i) return arr;
-  let temp = arr[minIndex];
-  arr[minIndex] = arr[i];
-  arr[i] = temp
+function swap(arr, i, j) {
+  if (i === j) return;
+  let temp = arr[i];
+  arr[i] = arr[j];
+  arr[j] = temp
 }
 
+
 var arr = [10, 4, 6, 3, 10, 9];
-console.log(selectionSort(arr));
+console.log(selectionSort1(arr));

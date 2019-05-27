@@ -1,12 +1,12 @@
-Object.prototype.bind1 = function () {
-  var context = this;
-  let fn = Array.prototype.shift.call(arguments);
-  let arg1 = arguments;
+Object.prototype.bind1 = function (context) {
+  var foo = this;
+  var args1 = Array.prototype.slice.call(arguments, 1);
   return function () {
-    let arg2 = [].slice.call(arguments)
-    fn.apply(context, arg2.push(...arg2))
+    let arg2 = Array.prototype.slice.call(arguments);
+    foo.apply(context, args1.concat(arg2))
   }
-}
+};
+
 var Bar = {
   a: 1,
   b:2
