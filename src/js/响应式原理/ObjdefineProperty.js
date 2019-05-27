@@ -7,7 +7,7 @@ new Watcher(data, 'name', update);
 data.name = 'JavaScript';
 
 function observe(obj) {
-  if (!obj || typeof obj !== 'object') {
+  if (obj === null || typeof obj !== 'object') {
     return;
   }
   Object.keys(obj).forEach(key => {
@@ -16,7 +16,7 @@ function observe(obj) {
 }
 
 function defineReactive(obj, key, val) {
-  observe(obj);
+  observe(val);
   let dp = new Dep();
   Object.defineProperty(obj, key, {
     enumerable: true,
@@ -43,6 +43,7 @@ class Dep {
   }
   notify(){
     this.subs.forEach(sub => {
+      console.log(`派发更新${sub}`);
       sub.update()
     })
   }
@@ -61,6 +62,7 @@ class Watcher{
   }
   update () {
     this.value = this.obj[this.key];
+    console.log(this.value)
     this.cb(this.value)
   }
 }

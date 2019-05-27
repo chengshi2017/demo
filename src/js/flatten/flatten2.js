@@ -1,3 +1,3 @@
 var arr = [1, [2, [3, 4]]];
 
-console.log(arr.flat('Infinity'));
+console.log(arr.flat(Infinity));

@@ -1,8 +1,13 @@
 Object.prototype.apply1 = function (context) {
-  var context = context || window;
+  if (typeof this !== "function") {
+    return TypeError('Error')
+  }
+  context = context || window;
   context.fn = this;
-  context.fn(...arguments[1]);
+  var args = Array.prototype.slice.call(arguments, 1);
+  var result = context.fn(args);
   delete context.fn;
+  return result;
 };
 var a= 5;
 var b = 7;
